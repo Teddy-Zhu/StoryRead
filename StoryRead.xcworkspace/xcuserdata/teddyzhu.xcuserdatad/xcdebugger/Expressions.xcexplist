@@ -3,10 +3,35 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "specialized AddNewBookController.(add(AddNewBookController) -&gt; (NSButton) -&gt; ()).(closure #1):AddNewBookController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "chapterUrlResult?[index].content">
+            </PersistentString>
+            <PersistentString
+               value = "(suffix + (chapterUrlResult?[index].attributes[&quot;href&quot;])!)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ViewController.loadHTML(AnyObject) -&gt; ():ViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "elementById.first">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SettingsController.resetFont() -&gt; ():SettingsController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AddNewBookController.add(NSButton) -&gt; ():AddNewBookController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "html">
+            </PersistentString>
+            <PersistentString
+               value = "dom.xPath(&quot;//div[@id=&apos;Smallcons&apos;]//h1&quot;)!.first?.content">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -19,30 +44,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "XPathFromCSS(String) -&gt; String:Queryable.swift">
+      </ContextState>
+      <ContextState
          contextName = "CoreDataStore.managedObjectModel.getter:CoreData.swift">
          <PersistentStrings>
             <PersistentString
                value = "NSBundle.mainBundle()">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Statement.bind([Binding?]) -&gt; Statement:Statement.swift">
-      </ContextState>
-      <ContextState
-         contextName = "SettingsController.resetFont() -&gt; ():SettingsController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "Ji.init(contentsOfURL : NSURL, encoding : UInt, isXML : Bool) -&gt; Ji?:Ji.swift">
-      </ContextState>
-      <ContextState
-         contextName = "SettingsController.Minus(AnyObject) -&gt; ():SettingsController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "AppDelegate.applicationDidFinishLaunching(NSNotification) -&gt; ():AppDelegate.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "ToolKit.path">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -58,7 +66,40 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "XPathFromCSS(String) -&gt; String:Queryable.swift">
+         contextName = "LoadChapterController.loadChapter(NSButton) -&gt; ():LoadChapterController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dom.xPath(&quot;//div[@id=&apos;content&apos;]&quot;)?.first?.content">
+            </PersistentString>
+            <PersistentString
+               value = "data?.content">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SettingsController.Minus(AnyObject) -&gt; ():SettingsController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AppDelegate.applicationDidFinishLaunching(NSNotification) -&gt; ():AppDelegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "ToolKit.path">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Ji.init(contentsOfURL : NSURL, encoding : UInt, isXML : Bool) -&gt; Ji?:Ji.swift">
+      </ContextState>
+      <ContextState
+         contextName = "AddNewWebController.addOrEditWeb(AnyObject) -&gt; ():AddNewWebController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.view">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Statement.bind([Binding?]) -&gt; Statement:Statement.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

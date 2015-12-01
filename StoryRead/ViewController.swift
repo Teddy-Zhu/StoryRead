@@ -43,7 +43,6 @@ class ViewController: NSViewController, NSPopoverDelegate {
 	lazy var addWebPopover: NSPopover = {
 		let popover = NSPopover()
 		popover.behavior = .Semitransient
-		popover.contentViewController = AddNewWebController()
 		popover.delegate = self
 		return popover
 	}()
@@ -51,7 +50,6 @@ class ViewController: NSViewController, NSPopoverDelegate {
 	lazy var addBookPopover: NSPopover = {
 		let popover = NSPopover()
 		popover.behavior = .Transient
-		popover.contentViewController = SettingsController(nibName: "SettingsController", bundle: nil, fontName: "", fontSize: 10)
 		popover.delegate = self
 		popover.appearance = NSAppearance(named: NSAppearanceNameAqua)
 
@@ -103,18 +101,23 @@ class ViewController: NSViewController, NSPopoverDelegate {
 		super.viewDidLoad()
 		textView = (stroyContent.documentView as! NSTextView)
 
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "addWebPopoverWillClose:", name: NSPopoverWillCloseNotification, object: self.settingsPopover)
+		let no = NSNotificationCenter.defaultCenter()
+		no.addObserver(self, selector: "addWebPopoverWillClose:", name: NSPopoverWillCloseNotification, object: self.settingsPopover)
+		no.addObserver(self, selector: "settingsPopoverWillClose:", name: NSPopoverWillCloseNotification, object: self.settingsPopover)
+
+		no.addObserver(self, selector: "addBookPopoverWillClose:", name: NSPopoverWillCloseNotification, object: self.addWebPopover)
+
+		no.addObserver(self, selector: "loadBookPopoverWillClose:", name: NSPopoverWillCloseNotification, object: self.loadBookPopover)
+
+		no.addObserver(self, selector: "loadChapterPopoverWillClose:", name: NSPopoverWillCloseNotification, object: self.loadChapterPopover)
+
+		addWebPopover.contentViewController = AddNewWebController(nibName: "AddNewWebController", bundle: nil, params: nil , popover: self.addWebPopover)
+
+		addBookPopover.contentViewController = AddNewBookController(nibName: "AddNewBookController", bundle: nil, popover: self.addBookPopover)
+
+        loadBookPopover.contentViewController = LoadBookController(nibName: "LoadBookController", bundle: nil, popover: self.loadBookPopover,loadChapter: loadChapter)
         
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "settingsPopoverWillClose:", name: NSPopoverWillCloseNotification, object: self.settingsPopover)
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "addBookPopoverWillClose:", name: NSPopoverWillCloseNotification, object: self.addWebPopover)
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadBookPopoverWillClose:", name: NSPopoverWillCloseNotification, object: self.loadBookPopover)
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadChapterPopoverWillClose:", name: NSPopoverWillCloseNotification, object: self.loadChapterPopover)
-        
-
-
+        loadChapterPopover.contentViewController = LoadChapterController(nibName: "LoadChapterController", bundle: nil, popover: self.loadChapterPopover, bookId: 0,textView : textView)
 		// Do any additional setup after loading the view.
 	}
 
@@ -125,7 +128,7 @@ class ViewController: NSViewController, NSPopoverDelegate {
 	}
 
 	@IBAction func loadHTML(sender: AnyObject) {
-		// DataBase.createTable();
+		DataBase.createTable(true);
 		// let book = Book()
 		// let dom  = book.getHtmlDom("http://www.miaobige.com/read/8343/3613394.html")
 		// let titleNode = dom.xPath("//head/title")?.first
@@ -165,21 +168,32 @@ class ViewController: NSViewController, NSPopoverDelegate {
 
 	}
 
-	@IBAction func loadBook(sender : AnyObject) {
-		loadChapter.hidden = false
+	@IBAction func loadBook(sender : NSButton) {
+        loadBookPopover.showRelativeToRect(NSZeroRect, ofView: sender, preferredEdge: NSRectEdge.MaxY)
 	}
 
-	@IBAction func loadChapter(sender: AnyObject) {
+	@IBAction func loadChapter(sender: NSButton) {
+        let bookId = (loadBookPopover.contentViewController as! LoadBookController).bookId
+        if bookId == nil || bookId == 0 {
+            CommonKit.getAlert("Error", message: "Please load book first")
+            return 
+        }else {
+            (loadChapterPopover.contentViewController as! LoadChapterController).bookId = bookId
+        }
+        loadChapterPopover.showRelativeToRect(NSZeroRect, ofView: sender, preferredEdge: NSRectEdge.MaxY)
+        
 
 	}
 
 	@IBAction func addWebConfig(sender: NSButton) {
+
 		addWebPopover.showRelativeToRect(NSZeroRect, ofView: sender, preferredEdge: NSRectEdge.MaxY)
 
 	}
 
-	@IBAction func addBook(sender: AnyObject) {
-
+	@IBAction func addBook(sender: NSButton) {
+		//(addBookPopover.contentViewController as! AddNewBookController).bookUrl.stringValue = ""
+		addBookPopover.showRelativeToRect(NSZeroRect, ofView: sender, preferredEdge: NSRectEdge.MaxY)
 	}
 
 	func addWebPopoverWillClose(notification: NSNotification) {
@@ -194,18 +208,21 @@ class ViewController: NSViewController, NSPopoverDelegate {
 		print(textView.string)
 		print(textView.textStorage?.string)
 	}
-    
-    func addBookPopoverWillClose(notification: NSNotification) {
-        print("add book close")
-    }
-    
-    func loadBookPopoverWillClose(notification: NSNotification) {
-        print("load book close")
-    }
-    
-    func loadChapterPopoverWillClose(notification: NSNotification) {
-        print("load chapter close")
-    }
 
+	func addBookPopoverWillClose(notification: NSNotification) {
+		print("add book close")
+	}
+
+	func loadBookPopoverWillClose(notification: NSNotification) {
+		print("load book close")
+	}
+
+	func loadChapterPopoverWillClose(notification: NSNotification) {
+		print("load chapter close")
+	}
+
+	deinit {
+		NSNotificationCenter.defaultCenter().removeObserver(self)
+	}
 }
 

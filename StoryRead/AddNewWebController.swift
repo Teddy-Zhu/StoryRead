@@ -7,39 +7,37 @@
 // 
 
 import Cocoa
+import SQLite
 
 class AddNewWebController: NSViewController {
 
 	var params : Dictionary<String, String>!
 
 	@IBOutlet weak var name : NSTextField!
+    @IBOutlet weak var webSiteUrl: NSTextField!
+    @IBOutlet weak var bookNamePath: NSTextField!
 	@IBOutlet weak var catalogRegex: NSTextField!
-	@IBOutlet weak var catalogIndex: NSTextField!
-	@IBOutlet weak var chapterRegex: NSTextField!
-	@IBOutlet weak var chapterIndex: NSTextField!
-	@IBOutlet weak var titleRegex: NSTextField!
-	@IBOutlet weak var titleIndex: NSTextField!
-	@IBOutlet weak var contentRegex: NSTextField!
-	@IBOutlet weak var contentIndex: NSTextField!
+	@IBOutlet weak var chapterUrlPath: NSTextField!
+    @IBOutlet weak var chapterNamePath: NSTextField!
+	@IBOutlet weak var contentPath: NSTextField!
 
-
+    var popover :NSPopover!
+    
 	@IBOutlet weak var submit: NSButton!
 
-	init?(nibName: String?, bundle : NSBundle? , params : Dictionary<String, String> ) {
-		// self.name = name
-		// self.catalogRegex = catalogRegex
-		// self.catalogIndex = catalogIndex
-		// self.chapterRegex = chapterRegex
-		// self.chapterIndex = chapterIndex
-		// self.titleRegex = titleRegex
-		// self.titleIndex = titleIndex
-		// self.contentRegex = contentRegex
-		// self.contentIndex = contentIndex
+    init?(nibName: String?, bundle : NSBundle? , params : Dictionary<String, String>? ) {
 
 		self.params = params
 
 		super.init(nibName: nibName, bundle: bundle)
 	}
+    init?(nibName: String?, bundle : NSBundle? , params : Dictionary<String, String>? ,popover:NSPopover ) {
+
+        self.params = params
+        self.popover = popover
+        super.init(nibName: nibName, bundle: bundle)
+        
+    }
 	init() {
 		super.init(nibName: "AddNewWebController", bundle: nil)!
 	}
@@ -48,29 +46,44 @@ class AddNewWebController: NSViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 
+    override func viewDidAppear() {
+        if params != nil {
+            name.stringValue = self.params["name"]!
+            catalogRegex.stringValue = self.params["catalogRegex"]!
+            webSiteUrl.stringValue = self.params["webSiteUrl"]!
+            chapterUrlPath.stringValue = self.params["chapterUrlPath"]!
+            chapterNamePath.stringValue = self.params["chapterNamePath"]!
+            bookNamePath.stringValue = self.params["bookNamePath"]!
+            contentPath.stringValue = self.params["contentPath"]!
+        }
+        super.viewDidAppear()
+    }
+    
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		if params != nil {
-			name.stringValue = self.params["name"]!
-			catalogRegex.stringValue = self.params["catalogRegex"]!
-			catalogIndex.stringValue = self.params["catalogIndex"]!
-			chapterRegex.stringValue = self.params["chapterRegex"]!
-			chapterIndex.stringValue = self.params["chapterIndex"]!
-			titleRegex.stringValue = self.params["titleRegex"]!
-			titleIndex.stringValue = self.params["titleIndex"]!
-			contentRegex.stringValue = self.params["contentRegex"]!
-			contentIndex.stringValue = self.params["contentIndex"]!
-		}
-
-
 		// Do view setup here.
 	}
 
 	@IBAction func addOrEditWeb(sender: AnyObject) {
-		let id = try! DataBase.db.run(DataBase.webConfig.i)
+
+		if name.stringValue.isEmpty || catalogRegex.stringValue.isEmpty || chapterUrlPath.stringValue.isEmpty || contentPath.stringValue.isEmpty || webSiteUrl.stringValue.isEmpty || chapterNamePath.stringValue.isEmpty {
+            CommonKit.getAlert("Warning Message", message: "Some Fields can not be empty").runModal()
+            return
+		}
+        //format
+        if !webSiteUrl.stringValue.hasSuffix("/") {
+            webSiteUrl.stringValue = webSiteUrl.stringValue + "/"
+        }
         
-        //DataBase.webName <- "妙笔阁", DataBase.catalogRegex <- "http://www.miaobige.com/read/(.*?)/", DataBase.catalogIndex <- 0
+
+		let id = try! DataBase.db.run(WebConfig.me.insert(WebConfig.webName <- name.stringValue, WebConfig.catalogRegex <-  catalogRegex.stringValue, WebConfig.chapterUrlPath <- chapterUrlPath.stringValue ,WebConfig.contentPath <- contentPath.stringValue , WebConfig.webSiteUrl <- webSiteUrl.stringValue ,WebConfig.bookNamePath <- bookNamePath.stringValue ,WebConfig.chapterNamePath <- chapterNamePath.stringValue ))
+        if id > 0 {
+            CommonKit.getAlert("Success Message", message: "Web Config Saved").runModal()
+            popover.performClose(nil)
+        }else{
+            CommonKit.getAlert("Failed Message", message: "Add Web Config Failed, please check the info you filled").runModal()
+            return
+        }
 	}
 
 }

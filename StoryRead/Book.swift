@@ -1,4 +1,4 @@
-//
+// 
 // Book.swift
 // StoryRead
 // 
@@ -7,19 +7,18 @@
 // 
 
 import Foundation
+import SQLite
 
 class Book {
-    
-    var bookId: Int!
+	static let me = Table("Book")
+	static let bookId = Expression<Int>("bookId")
+	static let book_webId = Expression<Int>("webId")
+	static let bookUrl = Expression<String>("bookUrl")
+	static let bookName = Expression<String>("bookName")
 
-    var book_webId : Int!
-    
-    var bookUrl : String!
-    
-    var bookName : String!
-    
-    var readLint : Int!
-    
-    var readChapterId:Int!
-    
+    static let chapterCount = Expression<Int>("chapterCount")
+
+	static let readLine = Expression<Int>("readLine")
+	static let readChapterId = Expression<Int>("readChapterId")
+
 }

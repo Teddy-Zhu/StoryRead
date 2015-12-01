@@ -7,28 +7,21 @@
 // 
 
 import Foundation
+import SQLite
 
 class WebConfig {
     
-    var webId : Int = 1
-
-    var webName: String = ""
-
-    var catalogRegex: String = ""
-
-    var catalogIndex: Int = 0
-
-    var chapterRegex: String = ""
-
-    var chapterIndex: Int = 0
-
-    var titleRegex: String = ""
-
-    var titleIndex: Int = 0
-
-    var contentRegex: String = ""
-
-    var contentInddex: Int = 0
+    static let me = Table("WebConfig")
+    
+    static let webId = Expression<Int>("webId")
+    static let webName = Expression<String>("webName")
+    static let webSiteUrl = Expression<String>("webSiteUrl")
+    static let catalogRegex = Expression<String>("catalogRegex")
+    static let bookNamePath = Expression<String>("bookNamePath")
+    static let chapterUrlPath = Expression<String>("chapterUrlPath")
+    static let chapterNamePath = Expression<String>("chapterNamePath")
+    static let titlePath = Expression<String>("titlePath")
+    static let contentPath = Expression<String>("contentPath")
     
 }
 

@@ -21,6 +21,7 @@
 		CC402B661C0AA886006388E2 /* LoadChapterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC402B641C0AA886006388E2 /* LoadChapterController.swift */; };
 		CC402B671C0AA886006388E2 /* LoadChapterController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC402B651C0AA886006388E2 /* LoadChapterController.xib */; };
 		CC5850061C06009E00BC5F52 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5850051C06009E00BC5F52 /* Book.swift */; };
+		CC79491A1C0C46F800AF91B1 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7949191C0C46F800AF91B1 /* Config.swift */; };
 		CCBD8BF11C07509500444BD9 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBD8BF01C07509500444BD9 /* Chapter.swift */; };
 		CCBD8BF31C07514100444BD9 /* CommonKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBD8BF21C07514100444BD9 /* CommonKit.swift */; };
 		CCBD8BF51C075D3200444BD9 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBD8BF41C075D3200444BD9 /* DataBase.swift */; };
@@ -49,6 +50,7 @@
 		CC402B641C0AA886006388E2 /* LoadChapterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadChapterController.swift; sourceTree = "<group>"; };
 		CC402B651C0AA886006388E2 /* LoadChapterController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadChapterController.xib; sourceTree = "<group>"; };
 		CC5850051C06009E00BC5F52 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		CC7949191C0C46F800AF91B1 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		CCBD8BF01C07509500444BD9 /* Chapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		CCBD8BF21C07514100444BD9 /* CommonKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonKit.swift; sourceTree = "<group>"; };
 		CCBD8BF41C075D3200444BD9 /* DataBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				CC5850051C06009E00BC5F52 /* Book.swift */,
 				CCBD8BF01C07509500444BD9 /* Chapter.swift */,
 				CCBD8BF41C075D3200444BD9 /* DataBase.swift */,
+				CC7949191C0C46F800AF91B1 /* Config.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				CCBD8BF11C07509500444BD9 /* Chapter.swift in Sources */,
 				CC3AE7A91C05F2CA00BA2A29 /* WebConfig.swift in Sources */,
 				CC402B621C0AA866006388E2 /* LoadBookController.swift in Sources */,
+				CC79491A1C0C46F800AF91B1 /* Config.swift in Sources */,
 				CC402B661C0AA886006388E2 /* LoadChapterController.swift in Sources */,
 				CCBD8BF31C07514100444BD9 /* CommonKit.swift in Sources */,
 				CCCDC68C1C0A104A00E6E4F4 /* AddNewBookController.swift in Sources */,

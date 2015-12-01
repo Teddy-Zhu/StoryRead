@@ -11,6 +11,11 @@ import Foundation
 
 class ToolKit {
     
+    
+    static let ChapterSeparator = "#chapter#"
+    
+    static let UrlPre = "http"
+    
     static let UrlPrefix = ["http://", "https://"]
     
     static let GB2312 = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.GB_18030_2000.rawValue))
@@ -39,6 +44,10 @@ class ToolKit {
 		let res = regex.matchesInString(string, options: NSMatchingOptions(rawValue: 0), range: NSMakeRange(0, string.characters.count))
 		return res
 	}
+    
+    static func getStringByNSTextCheckingResult(string: String , result :NSTextCheckingResult) -> String{
+        return (string as NSString).substringWithRange(result.range)
+    }
 
 	static func getRegexString(string: String, pattern: String, index: Int) -> NSTextCheckingResult {
 

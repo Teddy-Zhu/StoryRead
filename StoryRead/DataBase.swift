@@ -18,74 +18,57 @@ class DataBase {
 
 	static var db: Connection!
 
-	static let webConfig = Table(String(Mirror(reflecting: WebConfig()).subjectType).componentsSeparatedByString(".").first!)
-	static let webId = Expression<Int>("webId")
-	static let webName : Expression<String> = Expression<String>("webName")
-	static let catalogRegex = Expression<String>("catalogRegex")
-	static let catalogIndex = Expression<Int>("catalogIndex")
-	static let chapterRegex = Expression<String>("chapterRegex")
-	static let chapterIndex = Expression<Int>("chapterIndex")
-	static let titleRegex = Expression<String>("titleRegex")
-	static let titleIndex = Expression<Int>("titleIndex")
-	static let contentRegex = Expression<String>("contentRegex")
-	static let contentIndex = Expression<Int>("contentIndex")
+	static func createTable(createNew : Bool) {
 
-	static let chapter = Table(String(Mirror(reflecting: Chapter()).subjectType).componentsSeparatedByString(".").first!)
-
-	static let chapterId = Expression<Int>("chapterId")
-
-	static let chapterUrl = Expression<String>("chapterUrl")
-
-	static let chapteName = Expression<String>("chapteNname")
-
-	static let chapterContent = Expression<String>("chapterContent")
-
-	// create book table
-	static let book = Table(String(Mirror(reflecting: Book()).subjectType).componentsSeparatedByString(".").first!)
-
-	static let bookId = Expression<Int>("bookId")
-	static let book_webId = Expression<Int>("webId")
-	static let bookUrl = Expression<String>("bookUrl")
-	static let bookName = Expression<String>("bookName")
-	static let readLine = Expression<Int>("readLine")
-	static let readChapterId = Expression<Int>("readChapterId")
-
-	static func createTable() {
-
-		try! db.run(webConfig.drop(ifExists: true))
-		try! db.run(webConfig.create {
+		if createNew {
+			try! db.run(WebConfig.me.drop(ifExists: true))
+		}
+		try! db.run(WebConfig.me.create(ifNotExists: true) {
 				t in
-				t.column(webId, primaryKey: .Autoincrement)
-				t.column(webName, unique: true)
-				t.column(catalogRegex)
-				t.column(catalogIndex)
-				t.column(chapterRegex)
-				t.column(chapterIndex)
-				t.column(titleRegex)
-				t.column(titleIndex)
-				t.column(contentRegex)
-				t.column(contentIndex)
+				t.column(WebConfig.webId, primaryKey: .Autoincrement)
+				t.column(WebConfig.webName, unique: true)
+				t.column(WebConfig.webSiteUrl)
+				t.column(WebConfig.catalogRegex)
+				t.column(WebConfig.bookNamePath)
+				t.column(WebConfig.chapterUrlPath)
+				t.column(WebConfig.chapterNamePath)
+				t.column(WebConfig.titlePath)
+				t.column(WebConfig.contentPath)
+
+			})
+		if createNew {
+			try! db.run(Book.me.drop(ifExists: true))
+		}
+		try! db.run(Book.me.create(ifNotExists: true) {
+				t in
+				t.column(Book.bookId, primaryKey: .Autoincrement)
+				t.column(Book.book_webId, references: WebConfig.me , WebConfig.webId)
+				t.column(Book.bookUrl)
+				t.column(Book.chapterCount)
+				t.column(Book.bookName)
+				t.column(Book.readLine)
+				t.column(Book.readChapterId)
 			})
 
-
-		try! db.run(chapter.drop(ifExists: true))
-		try! db.run(chapter.create {
+		if createNew {
+			try! db.run(Chapter.me.drop(ifExists: true))
+		}
+		try! db.run(Chapter.me.create(ifNotExists: true) {
 				t in
-				t.column(chapterId, primaryKey: .Autoincrement)
-				t.column(chapteName, unique: true)
-				t.column(chapterUrl)
-				t.column(chapterContent)
+				t.column(Chapter.chapterId, primaryKey: .Autoincrement)
+				t.column(Chapter.chapter_bookId, references : Book.me, Book.bookId)
+				t.column(Chapter.chapterName)
+				t.column(Chapter.chapterUrl)
+				t.column(Chapter.chapterContent)
 			})
 
-		try! db.run(book.drop(ifExists: true))
-		try! db.run(book.create {
+		if createNew {
+			try! db.run(Config.me.drop(ifExists: true))
+		}
+		try! db.run(Config.me.create(ifNotExists: true) {
 				t in
-				t.column(bookId, primaryKey: .Autoincrement)
-				t.column(book_webId, references: webConfig , webId)
-				t.column(bookUrl)
-				t.column(bookName , unique : true)
-				t.column(readLine)
-				t.column(readChapterId , references: chapter , chapterId)
+				t.column(Config.configId, primaryKey: .Autoincrement)
+				t.column(Config.readBookId, references: Book.me , Book.bookId)
 			})
 
 
