@@ -32,7 +32,6 @@ class DataBase {
 				t.column(WebConfig.bookNamePath)
 				t.column(WebConfig.chapterUrlPath)
 				t.column(WebConfig.chapterNamePath)
-				t.column(WebConfig.titlePath)
 				t.column(WebConfig.contentPath)
 
 			})

@@ -21,6 +21,10 @@ class ViewController: NSViewController, NSPopoverDelegate {
 	@IBOutlet weak var test: NSButton!
 
 	@IBOutlet weak var read: NSButton!
+    
+    @IBOutlet weak var next:NSButton!
+    
+    @IBOutlet weak var prev:NSButton!
 
 	@IBOutlet weak var loadBook : NSButton!
 
@@ -117,7 +121,7 @@ class ViewController: NSViewController, NSPopoverDelegate {
 
         loadBookPopover.contentViewController = LoadBookController(nibName: "LoadBookController", bundle: nil, popover: self.loadBookPopover,loadChapter: loadChapter)
         
-        loadChapterPopover.contentViewController = LoadChapterController(nibName: "LoadChapterController", bundle: nil, popover: self.loadChapterPopover, bookId: 0,textView : textView)
+        loadChapterPopover.contentViewController = LoadChapterController(nibName: "LoadChapterController", bundle: nil, popover: self.loadChapterPopover, bookId: 0,textView : textView ,title: stroyTitle)
 		// Do any additional setup after loading the view.
 	}
 
@@ -150,6 +154,9 @@ class ViewController: NSViewController, NSPopoverDelegate {
 	}
 
 	@IBAction func read(sender: AnyObject) {
+        var test = "asas<br>asdasdas"
+        test = test.replaceRegex("<(?!br\\s*)[^>]+>", with: "").replaceRegex("</(?!\\s*br)[^>]+>", with: "").replaceRegex("\n", with: "\n   ").replaceRegex("<br\\s*>", with: "\n   ").replaceRegex("</\\s*br>", with: "\nn   ")
+        print(test)
 		// let dom  =
 		// let titleNode = dom!.xPath("//head/title")?.first
 		// print("title: \(titleNode?.content)")
@@ -174,11 +181,15 @@ class ViewController: NSViewController, NSPopoverDelegate {
 
 	@IBAction func loadChapter(sender: NSButton) {
         let bookId = (loadBookPopover.contentViewController as! LoadBookController).bookId
-        if bookId == nil || bookId == 0 {
-            CommonKit.getAlert("Error", message: "Please load book first")
+        if bookId == 0 {
+            CommonKit.getAlert("Error", message: "Please load book first").runModal()
             return 
         }else {
             (loadChapterPopover.contentViewController as! LoadChapterController).bookId = bookId
+        }
+        if (loadBookPopover.contentViewController as! LoadBookController).changed == true {
+            (loadBookPopover.contentViewController as! LoadBookController).changed = false
+            (loadChapterPopover.contentViewController as! LoadChapterController).chaptersDic = nil
         }
         loadChapterPopover.showRelativeToRect(NSZeroRect, ofView: sender, preferredEdge: NSRectEdge.MaxY)
         
@@ -201,12 +212,8 @@ class ViewController: NSViewController, NSPopoverDelegate {
 	}
 
 	func settingsPopoverWillClose(notification: NSNotification) {
-
 		textView.textStorage?.font = NSFont.systemFontOfSize(CGFloat((settingsPopover.contentViewController as! SettingsController).fontSize))
 		print("the popover closed 😂")
-		(stroyContent.documentView as! NSTextView).string = "2222"
-		print(textView.string)
-		print(textView.textStorage?.string)
 	}
 
 	func addBookPopoverWillClose(notification: NSNotification) {
@@ -218,8 +225,39 @@ class ViewController: NSViewController, NSPopoverDelegate {
 	}
 
 	func loadChapterPopoverWillClose(notification: NSNotification) {
+        stroyContent.contentView.scrollToPoint(NSPoint(x: 0,y: 0))
 		print("load chapter close")
 	}
+    
+    @IBAction func next(senedr:NSButton){
+        let chapterList = (loadChapterPopover.contentViewController as! LoadChapterController).chapterList
+        let dic  = getCurChapterDic()
+        if  chapterList.indexOfSelectedItem < dic.count {
+            chapterList.selectItemAtIndex(chapterList.indexOfSelectedItem+1)
+        }
+        loadPopChapter(senedr)
+    }
+    
+    @IBAction func prev(senedr:NSButton){
+        let chapterList = (loadChapterPopover.contentViewController as! LoadChapterController).chapterList
+        if  chapterList.indexOfSelectedItem > 0 {
+            chapterList.selectItemAtIndex(chapterList.indexOfSelectedItem - 1)
+        }
+        loadPopChapter(senedr)
+    }
+    
+    func loadPopChapter(sender:NSButton){
+        (loadChapterPopover.contentViewController as! LoadChapterController).loadChapter(sender)
+        stroyContent.contentView.scrollToPoint(NSPoint(x: 0,y: 0))
+    }
+    
+    func getCurChapterId()-> Int{
+        return (loadChapterPopover.contentViewController as! LoadChapterController).chapterId!
+    }
+    
+    func getCurChapterDic() -> Dictionary<Int,Int>{
+        return (loadChapterPopover.contentViewController as! LoadChapterController).chaptersDic
+    }
 
 	deinit {
 		NSNotificationCenter.defaultCenter().removeObserver(self)

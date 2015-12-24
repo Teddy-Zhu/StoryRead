@@ -15,16 +15,19 @@ class LoadBookController: NSViewController {
 	@IBOutlet weak var submit : NSButton!
 
 	var loadChapter: NSButton!
+    
+    var booksDic :Dictionary<Int ,Int>!
 
 	var popover : NSPopover!
 
-	var bookId : Int!
+	var bookId : Int = 0
+    
+    var changed: Bool = false
 
 	init?(nibName: String?, bundle : NSBundle? , popover: NSPopover , loadChapter : NSButton) {
 		self.popover = popover
 		self.loadChapter = loadChapter
 		super.init(nibName: nibName, bundle: bundle)
-
 	}
 
 	required init?(coder: NSCoder) {
@@ -32,24 +35,25 @@ class LoadBookController: NSViewController {
 	}
 
 	override func viewDidAppear() {
-		bookId = 0
 		submit.enabled = true
 		bookList.removeAllItems()
-
+        booksDic = Dictionary<Int ,Int>()
 		var has = false
+        var bookIndex = 0
 		for book in try! DataBase.db.prepare(Book.me) {
 			has = true
-			bookList.addItemWithObjectValue(NSLocalizedString(String(book[Book.bookId]), comment: book[Book.bookName]))
+            let bid = book[Book.bookId]
+            if bid == bookId {
+                bookIndex = booksDic.count
+            }
+            booksDic.updateValue(bid, forKey: booksDic.count)
+			bookList.addItemWithObjectValue(book[Book.bookName])
 		}
 
 		if has {
-			if bookId != nil {
-				bookList.selectText(bookId)
-			}else {
-				bookList.selectItemAtIndex(0)
-			}
+            bookList.selectItemAtIndex(bookIndex)
 		}else {
-			CommonKit.getAlert("Warnning Message", message: "Please add book first")
+			CommonKit.getAlert("Warnning Message", message: "Please add book first").runModal()
 			popover.performClose(nil)
 		}
 	}
@@ -67,8 +71,12 @@ class LoadBookController: NSViewController {
 			sender.enabled = true
 			return
 		}
-		bookId = (bookList.objectValueOfSelectedItem as! NSString).integerValue
-		if bookId == 0 {
+        let cbId = booksDic[bookList.indexOfSelectedItem]
+        if bookId != cbId {
+            changed = true
+        }
+        bookId = cbId!
+        if bookId == 0 {
 			CommonKit.getAlert("Error", message: "You must select a book").runModal()
 			sender.enabled = true
 			return

@@ -20,7 +20,6 @@ class WebConfig {
     static let bookNamePath = Expression<String>("bookNamePath")
     static let chapterUrlPath = Expression<String>("chapterUrlPath")
     static let chapterNamePath = Expression<String>("chapterNamePath")
-    static let titlePath = Expression<String>("titlePath")
     static let contentPath = Expression<String>("contentPath")
     
 }

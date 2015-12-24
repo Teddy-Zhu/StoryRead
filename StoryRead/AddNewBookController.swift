@@ -53,7 +53,7 @@ class AddNewBookController: NSViewController {
 		// get all web config
         var find = false
 		for config in try! DataBase.db.prepare(WebConfig.me) {
-			print("id:\(config[WebConfig.webId]),name:\(config[WebConfig.webName]),namepath:\(config[WebConfig.bookNamePath]),catalogRegex:\(config[WebConfig.catalogRegex]),chapterRegex:\(config[WebConfig.chapterUrlPath]),webSiteUrl:\(config[WebConfig.webSiteUrl]),title:\(config[WebConfig.titlePath]),content:\(config[WebConfig.contentPath])")
+			print("id:\(config[WebConfig.webId]),name:\(config[WebConfig.webName]),namepath:\(config[WebConfig.bookNamePath]),catalogRegex:\(config[WebConfig.catalogRegex]),chapterRegex:\(config[WebConfig.chapterUrlPath]),webSiteUrl:\(config[WebConfig.webSiteUrl]),title:\(config[WebConfig.chapterNamePath]),content:\(config[WebConfig.contentPath])")
 			let result = ToolKit.getRegexString(bookUrl.stringValue, pattern: config[WebConfig.catalogRegex])
 			if result.count > 0 {
                 find = true

@@ -29,6 +29,7 @@
 		CCCDC68D1C0A104A00E6E4F4 /* AddNewBookController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCCDC68B1C0A104A00E6E4F4 /* AddNewBookController.xib */; };
 		CCCDC6901C0A107000E6E4F4 /* AddNewWebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCDC68E1C0A107000E6E4F4 /* AddNewWebController.swift */; };
 		CCCDC6911C0A107000E6E4F4 /* AddNewWebController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCCDC68F1C0A107000E6E4F4 /* AddNewWebController.xib */; };
+		CCE93DC81C0DF79700AF8C14 /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE93DC71C0DF79700AF8C14 /* Regex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		CCCDC68B1C0A104A00E6E4F4 /* AddNewBookController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewBookController.xib; sourceTree = "<group>"; };
 		CCCDC68E1C0A107000E6E4F4 /* AddNewWebController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewWebController.swift; sourceTree = "<group>"; };
 		CCCDC68F1C0A107000E6E4F4 /* AddNewWebController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddNewWebController.xib; sourceTree = "<group>"; };
+		CCE93DC71C0DF79700AF8C14 /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			children = (
 				CC3AE7A61C05F07E00BA2A29 /* ToolKit.swift */,
 				CCBD8BF21C07514100444BD9 /* CommonKit.swift */,
+				CCE93DC71C0DF79700AF8C14 /* Regex.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				CCBD8BF51C075D3200444BD9 /* DataBase.swift in Sources */,
 				CC5850061C06009E00BC5F52 /* Book.swift in Sources */,
 				CC0426F51C04173E00B1DC01 /* ViewController.swift in Sources */,
+				CCE93DC81C0DF79700AF8C14 /* Regex.swift in Sources */,
 				CCCDC6901C0A107000E6E4F4 /* AddNewWebController.swift in Sources */,
 				CC0426F31C04173E00B1DC01 /* AppDelegate.swift in Sources */,
 				CC3AE7A71C05F07E00BA2A29 /* ToolKit.swift in Sources */,

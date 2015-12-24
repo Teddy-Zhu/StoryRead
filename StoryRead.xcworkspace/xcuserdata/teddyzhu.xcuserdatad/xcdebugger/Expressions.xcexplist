@@ -69,10 +69,13 @@
          contextName = "LoadChapterController.loadChapter(NSButton) -&gt; ():LoadChapterController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "dom.xPath(&quot;//div[@id=&apos;content&apos;]&quot;)?.first?.content">
+               value = "">
             </PersistentString>
             <PersistentString
                value = "data?.content">
+            </PersistentString>
+            <PersistentString
+               value = "print(dom.xPath(&quot;//div[@id=&apos;content&apos;]&quot;)?.first?.htmlDoc)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
