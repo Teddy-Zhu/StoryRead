@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -675,7 +675,6 @@
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKg-vr-5Td">
                                 <rect key="frame" x="269" y="293" width="69" height="23"/>
-                                <animations/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="ngK-NW-ov8">
                                     <font key="font" metaFont="system" size="19"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -684,14 +683,12 @@
                             </textField>
                             <box verticalHuggingPriority="750" misplaced="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="lcX-aV-Kg7">
                                 <rect key="frame" x="-1" y="282" width="608" height="5"/>
-                                <animations/>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <font key="titleFont" metaFont="system"/>
                             </box>
                             <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BtU-4N-65F">
                                 <rect key="frame" x="568" y="339" width="35" height="22"/>
-                                <animations/>
                                 <buttonCell key="cell" type="bevel" title="🛠" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="XVr-c5-6ho">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -702,7 +699,6 @@
                             </button>
                             <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="icv-a3-EaI">
                                 <rect key="frame" x="480" y="333" width="91" height="32"/>
-                                <animations/>
                                 <buttonCell key="cell" type="push" title="Load Book" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kIJ-3r-XyI">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -713,7 +709,6 @@
                             </button>
                             <button hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6yL-4G-Ftn">
                                 <rect key="frame" x="370" y="333" width="111" height="32"/>
-                                <animations/>
                                 <buttonCell key="cell" type="push" title="Load Chapter" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kYJ-li-8Xn">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -724,7 +719,6 @@
                             </button>
                             <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VwY-Kk-n7x">
                                 <rect key="frame" x="204" y="333" width="85" height="32"/>
-                                <animations/>
                                 <buttonCell key="cell" type="push" title="Add Web" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="M03-fP-ajG">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -735,7 +729,6 @@
                             </button>
                             <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NDp-3F-FxM">
                                 <rect key="frame" x="289" y="333" width="85" height="32"/>
-                                <animations/>
                                 <buttonCell key="cell" type="push" title="Add Book" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sgc-D8-fTr">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -746,7 +739,6 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jgn-cJ-x0t">
                                 <rect key="frame" x="14" y="298" width="81" height="32"/>
-                                <animations/>
                                 <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="q1F-Fa-MNF">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -757,7 +749,6 @@
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sqh-Lk-y0l">
                                 <rect key="frame" x="108" y="298" width="81" height="32"/>
-                                <animations/>
                                 <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="arJ-mO-yta">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -775,7 +766,6 @@
                                         <textView editable="NO" importsGraphics="NO" richText="NO" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="LDL-5L-0FI">
                                             <rect key="frame" x="0.0" y="0.0" width="344" height="135"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <animations/>
                                             <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <size key="minSize" width="344" height="135"/>
                                             <size key="maxSize" width="608" height="10000000"/>
@@ -784,24 +774,19 @@
                                             <size key="maxSize" width="608" height="10000000"/>
                                         </textView>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </clipView>
-                                <animations/>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="K5O-0R-Tmp">
                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1be-Pi-dGl">
                                     <rect key="frame" x="592" y="1" width="15" height="133"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <animations/>
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fiJ-NZ-78a">
                                 <rect key="frame" x="125" y="333" width="81" height="32"/>
-                                <animations/>
                                 <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lJg-XP-Qbc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -812,7 +797,6 @@
                             </button>
                             <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cbq-1r-jB9">
                                 <rect key="frame" x="39" y="333" width="81" height="32"/>
-                                <animations/>
                                 <buttonCell key="cell" type="push" title="Prev" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8fG-te-u2J">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -848,7 +832,6 @@
                             <constraint firstItem="VwY-Kk-n7x" firstAttribute="leading" secondItem="fiJ-NZ-78a" secondAttribute="trailing" constant="10" id="uVC-Pi-k4Y"/>
                             <constraint firstItem="icv-a3-EaI" firstAttribute="leading" secondItem="6yL-4G-Ftn" secondAttribute="trailing" constant="10" id="wG7-wn-NTB"/>
                         </constraints>
-                        <animations/>
                     </customView>
                     <connections>
                         <outlet property="addBook" destination="NDp-3F-FxM" id="Oky-If-hK3"/>
